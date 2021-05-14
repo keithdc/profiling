@@ -27,6 +27,11 @@
         <input autocomplete="off" formControlName="lastName" matInput placeholder="Last Name">
       </mat-form-field>
 
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input autocomplete="off" formControlName="email" matInput placeholder="Email">
+      </mat-form-field>
+
       <mat-form-field appearance="fill">
         <mat-label>Birth Date</mat-label>
         <input [matDatepicker]="picker" formControlName="birthDate" matInput>
@@ -42,7 +47,7 @@
   </div>
 
   <div #scroll2 class="container" fxLayout="column" fxLayoutAlign="flex-start center">
-    <div *ngIf="formGroup?.invalid && false" class="full-content" fxLayout="column" fxLayoutAlign="center center"
+    <div *ngIf="formGroup?.invalid" class="full-content" fxLayout="column" fxLayoutAlign="center center"
          fxLayoutGap="60px">
       <div fxLayout="column" fxLayoutAlign="center center"
            fxLayoutGap="20px">
@@ -54,21 +59,29 @@
         Get Back
       </button>
     </div>
-    <div *ngIf="formGroup?.valid || true" class="question-content" fxLayout="column" fxLayoutGap="20px">
-      <div *ngFor="let question of questions" [fxLayoutAlign]=" question?.type === TypesEnum.TEXTBOX ? 'flex-start center' : 'flex-start' "
-           [fxLayout]="question?.type === TypesEnum.TEXTBOX ? 'row' : 'column'">
-        <div class="mat-subheading-2">{{question?.order}})&nbsp;{{question?.title}}</div>
+    <div *ngIf="formGroup?.valid" class="question-content" fxLayout="column" fxLayoutGap="60px">
+      <div fxLayout="column" fxLayoutGap="20px">
+        <div *ngFor="let question of questions"
+             [fxLayoutAlign]="isTypeInlineRow.includes(question?.type) ? 'flex-start center' : 'flex-start' "
+             [fxLayout]="isTypeInlineRow.includes(question?.type) ? 'row wrap' : 'column'">
+          <div class="mat-subheading-2">{{question?.order}})&nbsp;{{question?.title}}</div>
 
-        <app-question-type (answer)="answer($event, question)" [choices]="choices" [question]="question" [type]="question?.type"
-                           class="m20" fxLayout="row"></app-question-type>
-        <!--        <div class="m10" fxLayout="column" fxLayoutGap="10px">-->
-        <!--          <div *ngFor="let choice of question?.choices">-->
-        <!--            <div class="mat-body-1">-->
-        <!--              {{choice?.info}}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
+          <app-question-type
+            (answer)="answer($event, question)"
+            [choices]="choices"
+            [ngClass]="{'m10': !isTypeInlineRow.includes(question?.type), 'ml-a': isTypeInlineRow.includes(question?.type)}"
+            [question]="question"
+            [type]="question?.type"
+            fxLayout="row"></app-question-type>
+        </div>
+      </div>
 
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button (click)="submit()" [disabled]="result?.length !== questions?.length" class="fit-content"
+                color="primary"
+                mat-flat-button>
+          Submit
+        </button>
       </div>
     </div>
   </div>

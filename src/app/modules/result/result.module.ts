@@ -1,19 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PageNotFoundComponent} from "./page-not-found.component";
-import {PageNotFoundRoutingModule} from "./page-not-found-routing.module";
+import {ResultModuleRouting} from "./result.module-routing";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatIconModule} from "@angular/material/icon";
+import {ResultComponent} from "./result.component";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
-  declarations: [PageNotFoundComponent],
+  declarations: [ResultComponent],
   imports: [
     CommonModule,
-    PageNotFoundRoutingModule,
+    ResultModuleRouting,
     FlexLayoutModule,
     MatIconModule,
+    MatButtonModule,
   ]
 })
-export class PageNotFoundModule {
+export class ResultModule {
 }

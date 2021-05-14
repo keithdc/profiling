@@ -1,0 +1,12 @@
+<div class="full-content" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" id="result">
+  <div class="mat-display-2">Hi <b><i>{{result?.user?.firstName}}&nbsp;{{result?.user?.lastName}}</i></b></div>
+  <div class="mat-headline">Here's your exam result and we email a copy of your result on this email:
+    <i><b>{{result?.user?.email}}</b></i></div>
+  <div class="mat-headline"><i><span class="green">{{result?.score}}</span> / <span>{{result?.outOf}}</span></i></div>
+  <mat-icon *ngIf="(result?.score / result?.outOf) * 100 > 60" class="icon">sentiment_satisfied</mat-icon>
+  <mat-icon *ngIf="(result?.score / result?.outOf) * 100 < 60 && (result?.score / result?.outOf) * 100 > 30" class="icon">sentiment_dissatisfied</mat-icon>
+  <mat-icon *ngIf="(result?.score / result?.outOf) * 100 < 30" class="icon">sentiment_very_dissatisfied</mat-icon>
+  <button (click)="home()" color="primary" mat-flat-button>
+    Home
+  </button>
+</div>

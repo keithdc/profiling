@@ -9,6 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule
   ],
   exports: [QuestionTypeComponent]
 })
