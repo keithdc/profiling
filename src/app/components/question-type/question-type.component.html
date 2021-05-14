@@ -1,0 +1,37 @@
+<div>
+  <mat-radio-group
+    (change)="answer.emit(data)"
+    *ngIf="type === TypesEnum.RADIOBOX"
+    [(ngModel)]="data"
+    fxLayout="column"
+    fxLayoutGap="15px"
+  >
+    <mat-radio-button (change)="checkIfHasChild(choice)" *ngFor="let choice of getChoices" [value]="choice?.id">
+      {{choice?.info}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <!--  <mat-list *ngIf="childData.length > 0" (selectionChange)="answer.emit(data)">-->
+  <!--    <mat-list-item *ngFor="let child of childData"> {{child?.info}} </mat-list-item>-->
+  <!--  </mat-list>-->
+
+  <mat-form-field *ngIf="getChildChoices.length > 0" appearance="fill" class="example-full-width w-500 mt-20">
+    <mat-label>Answer</mat-label>
+    <input [(ngModel)]="childData"
+           [matAutocomplete]="autoComplete"
+           aria-label="Number"
+           matInput
+           placeholder="Pick one"
+           type="text">
+    <mat-autocomplete #autoComplete="matAutocomplete" autoActiveFirstOption >
+      <mat-option (click)="answer.emit(data.id)" *ngFor="let data of getChildChoices" [value]="data?.info">
+        {{data?.info}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="type === TypesEnum.TEXTBOX" appearance="fill" class="ml-20 w-500">
+    <mat-label>Last Name</mat-label>
+    <input (change)="answer.emit(data)" [(ngModel)]="data" autocomplete="off" matInput placeholder="Last Name">
+  </mat-form-field>
+</div>

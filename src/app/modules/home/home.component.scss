@@ -1,0 +1,29 @@
+#home {
+
+  .container {
+    min-height: 100%;
+  }
+
+  .intro {
+    padding: 140px 40px;
+    background-color: #1e293b;
+    color: #ffffff
+  }
+
+  .error {
+    color: #dc2626;
+    min-height: 36px;
+    min-width: 36px;
+    height: 36px;
+    width: 36px;
+    font-size: 36px;
+  }
+
+  .mat-headline {
+    text-align: center;
+  }
+
+  .question-content {
+    width: 40%;
+  }
+}
